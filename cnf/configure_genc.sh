@@ -827,6 +827,9 @@ default d_xenix undef
 default d_wcscmp undef
 default d_wcsxfrm undef
 default doublekind -1
+default doubleinfbytes ''
+default doublenanbytes ''
+default doublemantbits
 default perl_static_inline static
 default_if_defined usevendorprefix d_vendorarch define undef
 default_if_defined usevendorprefix d_vendorbin define undef
@@ -1038,6 +1041,9 @@ default localtime_r_proto 0
 default locincpth
 default loclibpth
 default longdblkind -1
+default longdblinfbytes ''
+default longdblmantbits
+default longdblnanbytes
 default lp
 default lpr
 default ls ls
@@ -1084,6 +1090,7 @@ default nv_preserves_uv_bits 0
 default nveformat '"e"'
 default nvfformat '"f"'
 default nvgformat '"g"'
+default nvmantbits
 default o_nonblock O_NONBLOCK
 default obj_ext .o
 default objdump objdump
