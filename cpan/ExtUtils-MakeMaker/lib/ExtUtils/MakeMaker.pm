@@ -60,7 +60,9 @@ sub WriteMakefile {
     require ExtUtils::MY;
     my %att = @_;
 
-    $att{'dynamic_lib'}{'OTHERLDFLAGS'} = '-L../.. -L../../.. -ldummy';
+    if( $Config{'targetarch'} eq "x86_64-nt64-midipix" ) {
+        $att{'dynamic_lib'}{'OTHERLDFLAGS'} .= "-L". $Config{"topleveldir"} ." -ldummy";
+    }
 
     _convert_compat_attrs(\%att);
 

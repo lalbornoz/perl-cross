@@ -82,6 +82,8 @@ required archname
 default package perl5
 default version "$PERL_REVISION.$PERL_VERSION.$PERL_SUBVERSION"
 
+default topleveldir $(pwd)
+
 default prefix "/usr"
 if [ "${prefix%/}" != "$prefix" ]; then
 	prefix="${prefix%/}"
