@@ -32,7 +32,7 @@ if [ -n "$root" -a "$root" != "." -a ! -f "MANIFEST" ]; then
 		ln -sf "$root/$i" "./$i" || earlydie "Symlinking failed."
 	done
 
-	for i in x2p/Makefile utils/Makefile; do
+	for i in utils/Makefile; do
 		test -n "$abs" && relroot="$root" || relroot="../$root"
 		ln -sf "$relroot/$i" "$i" || earlydie "Symlinking failed."
 	done
