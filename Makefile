@@ -66,7 +66,7 @@ $(CROSSPATCHED): %.applied: %.patch
 
 # Force early building of miniperl -- not really necessary, but makes
 # the build process more logical. No reason to try CC if HOSTCC fails.
-all: crosspatch miniperl$X dynaloader perl$x nonxs_ext utilities extensions pods
+all: crosspatch miniperl$X libdummy.so dynaloader perl$x nonxs_ext utilities extensions pods
 
 config.h: config.sh config_h.SH
 	CONFIG_H=$@ CONFIG_SH=$< ./config_h.SH
@@ -427,3 +427,6 @@ clean-generated-files:
 clean-testpack:
 	-rm -fr TESTPACK
 	-rm -f TESTPACK.list
+
+libdummy.so:	av.o caretx.o deb.o doio.o doop.o dump.o DynaLoader.o globals.o gv.o hv.o keywords.o locale.o mathoms.o mg.o mro_core.o numeric.o op.o pad.o perlapi.o perlio.o perlmain.o perl.o perly.o pp_ctl.o pp_hot.o pp.o pp_pack.o pp_sort.o pp_sys.o reentr.o regcomp.o regexec.o run.o scope.o sv.o taint.o toke.o try.o universal.o utf8.o util.o
+		x86_64-nt64-midipix-gcc -shared -o libdummy.so -Wl,--out-implib,libdummy.lib -Wl,--output-def,libdummy.def $^

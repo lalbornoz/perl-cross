@@ -1,0 +1,35 @@
+d_voidsig=define
+d_nanosleep=define
+d_clock_gettime=define
+d_clock_getres=define
+d_clock_nanosleep=define
+d_clock=define
+
+# From the original linux.sh
+usemallocwrap=define
+
+# *NOT* checked! that's how original Configure set them. 
+d_semctl_semid_ds=define
+d_semctl_semun=define
+#paste this in file called 'midipix'
+#64-bit midipix
+charsize=1
+shortsize=2
+intsize=4
+longsize=8
+doublesize=8
+longdoublesize=16
+longlongsize=8
+voidptrsize=8
+int64tsize=8
+int32tsize=4
+int16tsize=2
+int8tsize=1
+offtsize=8
+sizetsize=8
+ssizetsize=8
+uidtsize=4
+gidtsize=4
+fpostsize=16
+
+ccflags+='-D_POSIX_C_SOURCE -D_XOPEN_SOURCE -D_GNU_SOURCE'
