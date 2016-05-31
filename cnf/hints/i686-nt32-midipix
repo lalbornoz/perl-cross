@@ -1,0 +1,54 @@
+#this is broken for Linux.. :)
+d_voidsig=define
+d_nanosleep=define
+d_clock_gettime=define
+d_clock_getres=define
+d_clock_nanosleep=define
+d_clock=define
+
+# From the original linux.sh
+usemallocwrap=define
+
+# *NOT* checked! that's how original Configure set them. 
+d_semctl_semid_ds=define
+d_semctl_semun=define
+#32-bit midipix
+charsize=1
+shortsize=2
+intsize=4
+longsize=4
+doublesize=4
+longdoublesize=8
+longlongsize=8
+voidptrsize=4
+int64tsize=8
+int32tsize=4
+int16tsize=2
+int8tsize=1
+offtsize=4
+sizetsize=4
+ssizetsize=4
+uidtsize=4
+gidtsize=4
+fpostsize=16
+i16size=2
+i16type=int16_t
+i32size=4
+i32type=int32_t
+i64size=8
+i64type=int64_t
+i8size=1
+i8type=int8_t
+u16size=2
+u16type=uint16_t
+u32size=4
+u32type=uint32_t
+u64size=8
+u64type=uint64_t
+u8size=1
+u8type=uint8_t
+
+ccflags+='-D_POSIX_C_SOURCE -D_XOPEN_SOURCE -D_GNU_SOURCE'
+prefix=/
+soname=libperl.so
+useshrplib=define
