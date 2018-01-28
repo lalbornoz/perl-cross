@@ -175,7 +175,13 @@ endif
 
 ifeq ($(useshrplib),define)
 $(LIBPERL):
+ifeq ($(TARGET),x86_64-nt64-midipix)
+	$(CC) $(LDDLFLAGS) -o $@ $(filter %$o,$^) -Wl,--out-dsolib,libperl.lib $(LIBS)
+else ifeq ($(TARGET),i686-nt32-midipix)
+	$(CC) $(LDDLFLAGS) -o $@ $(filter %$o,$^) -Wl,--out-dsolib,libperl.lib $(LIBS)
+else
 	$(CC) $(LDDLFLAGS) -o $@ $(filter %$o,$^) $(LIBS)
+endif
 else
 $(LIBPERL):
 	$(AR) cru $@ $(filter %$o,$^)
@@ -429,4 +435,10 @@ clean-testpack:
 	-rm -f TESTPACK.list
 
 libdummy.so:	av.o caretx.o deb.o doio.o doop.o dump.o DynaLoader.o globals.o gv.o hv.o keywords.o locale.o mathoms.o mg.o mro_core.o numeric.o op.o pad.o perlapi.o perlio.o perlmain.o perl.o perly.o pp_ctl.o pp_hot.o pp.o pp_pack.o pp_sort.o pp_sys.o reentr.o regcomp.o regexec.o run.o scope.o sv.o taint.o toke.o try.o universal.o utf8.o util.o
-		${TARGET}-gcc -shared -o libdummy.so -Wl,--out-dsolib,libdummy.lib -Wl,--output-def,libdummy.def $^
+ifeq ($(TARGET),x86_64-nt64-midipix)
+		${TARGET}-gcc -shared -o libdummy.so -Wl,--out-dsolib,libdummy.lib $^
+else ifeq ($(TARGET),i686-nt32-midipix)
+		${TARGET}-gcc -shared -o libdummy.so -Wl,--out-dsolib,libdummy.lib $^
+else
+		${TARGET}-gcc -shared -o libdummy.so -Wl,--out-implib,libdummy.lib -Wl,--output-def,libdummy.def $^
+endif
